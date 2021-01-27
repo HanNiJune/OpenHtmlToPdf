@@ -1,0 +1,462 @@
+<html> 
+ <head> 
+<style>
+  @page {
+    margin: 30px 20px;
+    
+    @top-center {
+       font-family: 'OpenSans-Regular';
+       font-size: 16px;
+       content: "This is PDF/UA page " counter(page) " of " counter(pages) ".";
+    }
+  }
+  body {
+    margin: 0;
+    font-family: 'OpenSans-Regular';
+    font-size: 16px;
+  }
+  h1, h2, h3 {
+      font-family: 'OpenSans-SemiBold';
+  }
+  em {
+      font-family: 'OpenSans-Italic';
+  }
+  </style>
+
+  <title>Insert title here</title> 
+  <link rel="stylesheet" href="material-blue.css"/>
+  </head> 
+ <body>  <ng-form name="appform_p1Form"> 
+   <div class="tab-pane active" id="one"> 
+    <div class="bs-example"> 
+     <div class="panel-group" id="accordion"> <!--Channel Type--> 
+      <div class="panel panel-default"> 
+       <div class="panel-heading collapse_body" style="border-bottom-left-radius: 0;border-bottom-right-radius: 0;"> 
+        <h1 class="panel-title collapse_title justify-content-between"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse-form1-2"> CHANNEL </a>  </h1> 
+       </div> 
+       <div id="collapse-form1-2" class="panel-collapse collapse in show form_position">  
+        <form class="form-horizontal form_body" name="afForm1ChannelType"> 
+         <div class="row form_position"> 
+          <div class="col-sm-6"> <label class="lbl">Channel Type</label> 
+           <div> <select id="channel_type" class="common_input username-visible single_select" style="width: 100%;"><option></option></select> 
+            <input type="hidden" ng-required="$ctrl.parent.tabs['appform'] == 'edit' &amp;&amp; $ctrl.parent.blocks['appform_p1_channel'] == 'edit'" value=""/> 
+           </div> 
+          </div> 
+           
+          <div class="col-sm-6"> 
+           <div>
+            <input type="hidden" class="form-control common_input"/>
+           </div> 
+            
+            
+            
+          </div> 
+           
+          <div class="col-sm-6"> 
+            
+            
+          </div> 
+          <div class="col-sm-6"> 
+            
+          </div> 
+          <div class="col-sm-6"> 
+            
+          </div> 
+         </div> 
+        </form> 
+       </div> 
+      </div> <!--Type Of Account--> 
+      <div class="panel panel-default" style="clear:both;"> 
+       <div class="panel-heading collapse_body" style="border-bottom-left-radius: 0;border-bottom-right-radius: 0;"> 
+        <h1 class="panel-title collapse_title justify-content-end"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse-form1-3"> TYPE OF ACCOUNT </a>  </h1> 
+       </div> 
+       <div id="collapse-form1-3" class="panel-collapse collapse in show form_position">  
+        <form class="form-horizontal form_body" name="afForm1AccountType"> 
+         <div class="row form_position"> 
+          <div class="col-sm-12"> 
+          <label class="lbl"> Do you have an existing securities account with UOB KayHian? </label> 
+           <div> <label class="radio_check"> <input type="radio" name="optradio" ng-value="true" ng-change="$ctrl.updateAccountStatus(false,true)"/> 
+           <span class="radio_mark"></span> Yes </label>
+           <label class="radio_check"> 
+           <input type="radio" name="optradio" ng-value="false" ng-change="$ctrl.updateAccountStatus(false,false)" checked="checked"/>
+            <span class="radio_mark"></span> No </label> 
+           </div> 
+          </div> 
+         </div> 
+         <div class="row account_body form_position"> 
+          <div class="col-sm-12 address_body" style="padding:0px;"> 
+           <div class="row sub_title"> 
+            <div class="col-sm-3 pl_6"> <span>Account Type </span> 
+            </div> 
+            <div class="col-sm-3 pad_l0"> <span> Client Type </span> 
+            </div> 
+            <div class="col-sm-3 pad_l0"> <span> Account Number </span> 
+            </div> 
+           </div> 
+           <div class="sm_tab_wrapper"> <!-- For Securities Trading--> 
+            <div class="row col-sm-12"> 
+             <div class="col-sm-3"> <label class="check pad_lef_top"> <label>Securities Trading</label> <input type="checkbox" name="cashAcctEnabled" ng-disabled="
+                                                        $ctrl.parent.taskDetail.isYoungInvestor ||
+                                                        (!$ctrl.parent.taskDetail.activitiVariablesObj.existingClient &amp;&amp; $ctrl.parent.taskDetail.activitiVariablesObj.cfd10Acct) ||
+                                                        (!$ctrl.parent.taskDetail.activitiVariablesObj.existingClient &amp;&amp; $ctrl.parent.taskDetail.activitiVariablesObj.utDeltaAcct) ||
+                                                        (!$ctrl.parent.taskDetail.activitiVariablesObj.existingClient &amp;&amp; $ctrl.parent.taskDetail.activitiVariablesObj.mt4Acct)
+                                                        " ng-click="$ctrl.updateAccountStatus(true)" checked="checked"/>
+                                                         <input type="hidden"/> <span class="checkmark"></span> </label> 
+             </div> 
+             <div class="col-sm-3"> <select ng-disabled="!$ctrl.parent.taskDetail.activitiVariablesObj['cashAcct']" id="sec_trade_client" class="common_input username-visible single_select"><option></option></select> 
+              <input type="hidden" name="select_cash" ng-required="$ctrl.uobkh.submitted &amp;&amp; 
+                                                $ctrl.parent.taskDetail.activitiVariablesObj['sec_trade_client'] !== 0 &amp;&amp;
+                                                $ctrl.parent.taskDetail.activitiVariablesObj['cashAcct'] &amp;&amp; $ctrl.parent.tabs['appform'] == 'edit'" 
+                                                value=""/>  
+             </div> 
+              
+             <div class="col-sm-3"> 
+              <input type="text" maxlength="250" class="form-control common_input"
+               readonly="readonly" ng-value="$ctrl.parent.taskDetail.activitiVariablesObj['sec_trade_num']"/> 
+             </div> 
+             <div class="col-sm-3">  
+             </div> 
+            </div> 
+            <div class="row col-sm-12"> 
+             <div class="col-sm-3">   Contract for Difference 10 
+              <input type="checkbox" name="cfdEnable10" ng-disabled="$ctrl.parent.taskDetail.isYoungInvestor" ng-change="$ctrl.handleCFD10Account()"
+               checked="checked"/>  <input type="hidden" /> 
+               <span class="checkmark"> </span> 
+             </div> 
+             <div class="col-sm-3"> <select ng-disabled="!$ctrl.parent.taskDetail.activitiVariablesObj.cfd10Acct" id="cfd10_client" class="common_input username-visible single_select"><option></option></select> 
+              <input type="hidden" 
+              name="select_cfd10" 
+              ng-required="$ctrl.parent.taskDetail.activitiVariablesObj['cfd10Acct'] &amp;&amp; $ctrl.uobkh.submitted &amp;&amp;
+               $ctrl.parent.tabs['appform'] == 'edit'" value=""/>  
+             </div> 
+              
+             <div class="col-sm-3"> 
+              <input type="text" maxlength="250" class="form-control common_input" readonly="readonly" 
+              ng-value="$ctrl.parent.taskDetail.activitiVariablesObj['cfd10_num']"/> 
+             </div> 
+             <div class="col-sm-3">  
+             </div> 
+            </div> <!-- UTRADE Delta --> 
+            <div class="row col-sm-12"> 
+             <div class="col-sm-3"> <label class="check pad_lef_top"> <label>UTRADE Delta</label> 
+             <input type="checkbox" name="utradeEnabled" ng-disabled="$ctrl.parent.taskDetail.isYoungInvestor" 
+             ng-change="$ctrl.handleUtradeDeltaAccount()"/> <input type="hidden"/> <span class="checkmark"> </span> </label> 
+             </div> 
+             <div class="col-sm-3"> <select class="common_input username-visible single_select"> <option></option> </select> 
+              <input type="hidden"/> 
+             </div> 
+             <div class="col-sm-3"> 
+              <input type="text" maxlength="250" class="form-control common_input"/> 
+             </div> 
+            </div> 
+             
+             <!-- MT4 --> 
+            <div class="row col-sm-12"> 
+             <div class="col-sm-3"> <label class="check pad_lef_top"> <label>MT4</label>
+              <input type="checkbox" ng-disabled="$ctrl.parent.taskDetail.isYoungInvestor" ng-change="$ctrl.handleMT4Account()"/>
+               <input type="hidden"/> <span class="checkmark"> </span> </label> 
+             </div> 
+             <div class="col-sm-3"> <select class="common_input username-visible single_select"> <option></option> </select> 
+              <input type="hidden"/> 
+             </div> 
+             <div class="col-sm-3"> 
+              <input type="text" maxlength="250" class="form-control common_input"/> 
+             </div> 
+            </div> 
+             <!-- UTRADE Edge--> 
+            <div class="row col-sm-12"> 
+             <div class="col-sm-3"> <label class="check pad_lef_top"> <label>UTRADE Edge</label> 
+             <input type="checkbox" ng-change="$ctrl.handleUtradeEdge()" checked="checked"/>
+              <input type="hidden"/> <span class="checkmark"> </span> </label> <button style="margin-left: 10px;" class="popover_btn" data-toggle="popover" data-trigger="focus" ng-attr-data-content="Online cash upfront account"> <i class="fa fa-info-circle pop_icon"></i> </button> 
+             </div> 
+             <div class="col-sm-3"> <select class="common_input username-visible single_select"> <option></option> </select> 
+              <input type="hidden"/> 
+             </div> 
+             <div class="col-sm-3"> 
+              <input type="text" maxlength="250" class="form-control common_input"/> 
+             </div> 
+            </div> 
+            <div class="col-sm-12 mleft_10"> 
+             <div class="col-sm-3"> <label for="">-To trade securities in SG,HK,MY,US Markets</label> 
+             </div> 
+            </div> <!-- UTRADE ROBO--> 
+            <div class="row col-sm-12"> 
+             <div class="col-sm-3"> <label class="check pad_lef_top"> <label>UTRADE ROBO</label> 
+             <input type="checkbox" ng-disabled="$ctrl.parent.taskDetail.isYoungInvestor 
+             || $ctrl.parent.taskDetail.activitiVariablesObj.apptNationality == 'US'" /> <input type="hidden"/> <span class="checkmark"> </span> </label> <button style="margin-left: 10px;" class="popover_btn" data-toggle="popover" data-trigger="focus" ng-attr-data-content="UTRADE Robo is a digital fund manager providing customized portfolio to suit the investment objectives of our clients"> <i class="fa fa-info-circle pop_icon"></i> </button> 
+             </div> 
+             <div class="col-sm-3"> <select class="common_input username-visible single_select"> <option></option> </select> 
+              <input type="hidden"/> 
+             </div> 
+             <div class="col-sm-3"> 
+              <input type="text" maxlength="250" class="form-control common_input"/> 
+             </div> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </form> 
+       </div> 
+      </div> <!--Title Here--> 
+      <div class="panel panel-default" style="clear:both;"> 
+       <div class="panel-heading collapse_body" style="border-bottom-left-radius: 0;border-bottom-right-radius: 0;"> 
+        <h1 class="panel-title collapse_title d-flex justify-content-between">   </h1> 
+       </div> 
+       <div id="collapse-form1-4" class="panel-collapse collapse in show form_position">  
+        <form class="form-horizontal form_body" name="afForm1TitleHere"> 
+         <div class="row form_position"> 
+          <div class="col-sm-12"> <label class="lbl"> Do you have a referral? </label> 
+           <div> <label class="radio_check"> <input type="radio" name="referral" ng-value="true"
+            ng-change="$ctrl.updateCheckBoxes('know_referral',5)"/> <span class="radio_mark"></span> Yes </label> <label class="radio_check">
+             <input type="radio" name="referral" ng-value="false" ng-change="$ctrl.updateCheckBoxes('know_referral',5)" checked="checked"/> 
+             <span class="radio_mark"></span> No </label> 
+           </div> 
+          </div> 
+         </div> 
+          
+          
+         <div class="row form_position"> 
+          <div class="col-sm-12"> <label class="lbl">Do you have a Promo Code? If yes, please enter your promo code here.</label> 
+           <div> 
+            <input type="text" class="common_input" value="PROMOCODE"/> 
+           </div> 
+          </div> 
+          <div class="col-sm-12"> <label class="lbl">Do you have a preferred TR?</label> 
+           <div class=""> <label class="radio_check"> <input type="radio" ng-value="true" /> 
+           <span class="radio_mark"/> Yes </label> <label class="radio_check"> 
+           <input type="radio" ng-value="false" checked="checked" /> <span class="radio_mark"></span> No </label> 
+           </div> 
+          </div> 
+           
+           
+         </div> 
+          
+        </form> 
+       </div> 
+      </div> <!--Personal Particulars--> 
+      <div class="panel panel-default" style="clear:both;"> 
+       <div class="panel-heading collapse_body" style="border-bottom-left-radius: 0;border-bottom-right-radius: 0;"> 
+        <h1 class="panel-title collapse_title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse-form1-5"> PERSONAL PARTICULARS </a>  </h1> 
+       </div> 
+       <div id="collapse-form1-5" class="panel-collapse collapse in show form_position">  
+        <form class="form-horizontal form_body" name="afForm1PersonalForm"> 
+         <div class="row form_position common_mb5"> 
+          <div class="col-sm-3"> <label class="lbl">Name</label>  
+           <div> 
+            <input type="text" class="common_input" maxlength="45" name="applicantName" 
+            ng-required="$ctrl.uobkh.submitted &amp;&amp; $ctrl.parent.tabs['appform'] == 'edit' 
+            &amp;&amp; !$ctrl.parent.taskDetail.activitiVariablesObj['apptName']" value="CG 180121"/> 
+           </div> 
+          </div> 
+          <div class="col-sm-3"> <label class="lbl">Date of Birth</label>  
+           <div class=""> 
+            <input name="dateOfBirth"  
+            class="form-control common_input bddatepicker date-picker" ng-readonly="true" id="apptdobdatepicker"
+             ng-required="$ctrl.uobkh.submitted &amp;&amp; $ctrl.parent.tabs['appform'] == 'edit'" value="1990-12-11T16:00:00Z"/> <i class="fa fa-calendar gj-icon"></i> 
+           </div> 
+          </div> 
+          <div class="col-sm-3"> <label class="lbl"> Gender </label> 
+           <div class="pt_10"> <label class="radio_check"> <input 
+           type="radio" name="gender" ng-value="false" ng-change="$ctrl.snycWithSelectBoxes('apptGender',
+            $ctrl.constant.selectExtraIds.dmuCustMaintain, false)" /> 
+            <span class="radio_mark"/>Male </label> <label class="radio_check">
+             <input type="radio" name="gender" ng-value="true" 
+             ng-change="$ctrl.snycWithSelectBoxes('apptGender', $ctrl.constant.selectExtraIds.dmuCustMaintain, true)" 
+             checked="checked"/> <span class="radio_mark"></span>Female </label> 
+           </div> 
+          </div> 
+         </div> 
+         <div class="row form_position common_mb5"> 
+          <div class="col-sm-3"> <label class="lbl">Marital Status</label>  
+           <div> <select class="common_input username-visible single_select" name="single_select" id="apptMarital"><option>SINGLE</option></select> 
+            <input type="hidden" name="apptMartialStatus" ng-required="$ctrl.uobkh.submitted &amp;&amp;
+             $ctrl.parent.tabs['appform'] == 'edit'" value="SINGLE"/> 
+           </div> 
+          </div> 
+          <div class="col-sm-3"> <label class="lbl">Country of Birth</label>  
+           <div> <select class="common_input username-visible single_select" name="single_select" id="apptBirthCtry"><option>SG</option></select> 
+            <input type="hidden" name="apptCtryOfBirth" 
+            ng-required="$ctrl.uobkh.submitted &amp;&amp; $ctrl.parent.tabs['appform'] == 'edit'" value="SG"/> 
+           </div> 
+          </div> 
+          <div class="col-sm-3"> <label class="lbl">Nationality</label>  
+           <div> <select class="common_input" id="apptNationality"><option>SG</option></select> 
+            <input type="hidden" name="applicantNationality" 
+            ng-required="$ctrl.uobkh.submitted &amp;&amp; $ctrl.parent.tabs['appform'] == 'edit'" value="SG"/> 
+           </div> 
+          </div> 
+          <div class="col-sm-3"> <label class="lbl"> Permanent Resident of Singapore <button class="popover_btn" data-toggle="popover" data-trigger="focus" ng-attr-data-content="{{$ctrl.messages.disableMessages.applicant.prOfSingapore}}"> <i class="fa fa-info-circle pop_icon"></i> </button> </label> 
+           <div class="pt_10"> <label class="radio_check"> 
+           <input type="radio" name="permanent" ng-disabled="$ctrl.parent.taskDetail.activitiVariablesObj.apptNationality == 'SG'"
+            ng-click="$ctrl.checkPr('apptPr', true, 'apptNationality', 'passportExpDate')"/> 
+            <span class="radio_mark"></span> Yes </label> <label class="radio_check"> <input type="radio" 
+            name="permanent" ng-disabled="$ctrl.parent.taskDetail.activitiVariablesObj.apptNationality == 'SG'"
+             ng-click="$ctrl.checkPr('apptPr', false, 'apptNationality', 'passportExpDate')" checked="checked" />
+              <span class="radio_mark"></span> No </label> 
+           </div> 
+          </div> 
+         </div> 
+         <div class="row p_t6 common_mb5"> 
+          <div class="col-sm-3"> <label class="lbl">NRIC</label>  
+           <div> 
+            <input type="text" maxlength="250" class="form-control common_input"
+             name="applicantNIRC" ng-required="$ctrl.uobkh.submitted &amp;&amp; $ctrl.parent.tabs['appform'] == 'edit'" value="S1234567D"/> 
+           </div> 
+          </div> 
+           
+           
+          <div class="col-sm-3"> 
+           <div class="">
+            <input type="hidden" class="form-control common_input"/> 
+           </div> <label class="lbl">Email Address</label>  
+           <div> 
+            <input type="text" maxlength="250" class="form-control common_input" 
+            name="applicantEmail" ng-required="$ctrl.uobkh.submitted &amp;&amp; $ctrl.parent.tabs['appform'] == 'edit'" 
+            ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" value="APRIL@SIT.STARTINPOINT.COM"/> 
+           </div> 
+          </div> 
+         </div> 
+         <div class="row p_t6 common_mb5"> 
+          <div class="col-sm-3"> <label class="lbl">Home Tel No</label> <!-- <span class="error_text error_icon" ng-if="!afForm1PersonalForm.homeTelNo.$valid">
+                                        {{$ctrl.messages.validation.requiredSelect}}
+                                    </span> --> 
+           <div> <select class="common_input username-visible single_select" id="apptHomeTelCtry"><option>SG</option></select> 
+            <input type="hidden" name="homeTelNo" value="SG"/> 
+           </div> 
+          </div> 
+          <div class="col-sm-1 pad_r0"> 
+           <div> 
+            <input type="hidden" class="form-control common_input" autocomplete="off"/> 
+           </div> <label class="lbl">Area Code <button class="popover_btn" data-toggle="popover" data-trigger="focus" ng-attr-data-content="{{$ctrl.messages.disableMessages.areaCode}}"> <i class="fa fa-info-circle pop_icon"></i> </button> </label> 
+           <div> 
+            <input class="common_input text-center" ng-value="$ctrl.parent.taskDetail.activitiVariablesObj['apptHomeTelCode']" 
+            disabled="disabled" /> 
+           </div> 
+          </div> 
+          <div class="col-sm-2"> 
+           <div>
+            <input type="hidden" class="form-control common_input"/>
+           </div> <label class="lbl"></label> 
+           <div class=""> 
+            <input type="text" maxlength="250" class="common_input" name="applicantHomeTel" value="12345678"/> 
+           </div> 
+          </div> 
+          <div class="col-sm-3"> <label class="lbl">Office Tel No</label> 
+           <div> <select class="common_input username-visible single_select" id="apptOfficeTelCtry"><option></option></select> 
+            <input type="hidden" name="applicantOfficeTelCtry" value=""/> 
+           </div> 
+          </div> 
+          <div class="col-sm-1 pad_r0"> 
+           <div>
+            <input type="hidden" class="form-control common_input" autocomplete="off"/> 
+           </div> <label class="lbl">Area Code <button class="popover_btn" data-toggle="popover" data-trigger="focus" ng-attr-data-content="{{$ctrl.messages.disableMessages.areaCode}}"> <i class="fa fa-info-circle pop_icon"></i> </button> </label> 
+           <div> 
+            <input class="common_input text-center" 
+            ng-value="$ctrl.parent.taskDetail.activitiVariablesObj['apptOfficeTelCode']" disabled="disabled" /> 
+           </div> 
+          </div> 
+          <div class="col-sm-2"> 
+           <div>
+            <input type="hidden" class="form-control common_input" />
+           </div> <label class="lbl"></label> <!-- <span class="error_text error_icon" ng-if="!afForm1PersonalForm.applicantOfficeTel.$valid">
+                                        {{$ctrl.messages.validation.requiredInput}}
+                                    </span> --> 
+           <div class=""> 
+            <input type="text" maxlength="250" class="common_input" name="applicantOfficeTel" value="" /> 
+           </div> 
+          </div> 
+         </div> 
+         <div class="row p_t6 common_mb5"> 
+          <div class="col-sm-3"> <label class="lbl">Mobile No</label> 
+           <div> <select class="common_input username-visible single_select" id="apptMobileCtry"><option></option></select> 
+            <input type="hidden" name="applicantMobileCtry" value="" /> 
+           </div> 
+          </div> 
+          <div class="col-sm-1 pad_r0"> 
+           <div>
+            <input type="hidden" class="form-control common_input" autocomplete="off" /> 
+           </div> <label class="lbl">Area Code <button class="popover_btn" data-toggle="popover" data-trigger="focus" ng-attr-data-content="{{$ctrl.messages.disableMessages.areaCode}}"> <i class="fa fa-info-circle pop_icon"></i> </button> </label> 
+           <div> 
+            <input class="common_input text-center" 
+            disabled="disabled" ng-value="$ctrl.parent.taskDetail.activitiVariablesObj['apptMobileCode']" /> 
+           </div> 
+          </div> 
+          <div class="col-sm-2"> 
+           <div>
+            <input type="hidden" class="form-control common_input" /> 
+           </div> <label class="lbl"></label> <!-- <span class="error_text error_icon" ng-if="!afForm1PersonalForm.applicantMobile.$valid">
+                                        {{$ctrl.messages.validation.requiredInput}}
+                                    </span> --> 
+           <div class=""> 
+            <input type="text" maxlength="250" class="common_input" name="applicantMobile" value="" /> 
+           </div> 
+          </div> 
+         </div> 
+         <div class="address_body"> 
+          <h1 class="sub_title"> Residential Address </h1> 
+          <div class="pad_15"> 
+           <div class="row"> 
+            <div class="col-sm-3"> <label class="lbl">Country</label>  
+             <div> <select class="common_input username-visible single_select" name="single_select" id="apptResAddCtry"><option>SG</option></select> 
+              <input type="hidden" name="applicantResAddCtry" ng-required="$ctrl.uobkh.submitted &amp;&amp; $ctrl.parent.tabs['appform'] == 'edit'" 
+              value="SG" /> 
+             </div> 
+            </div> 
+            <div class="col-sm-3"> 
+             <div>
+              <input type="hidden" class="form-control common_input" /> 
+             </div> <label class="lbl">Unit No</label> 
+             <div> 
+              <input type="text" maxlength="250" class="form-control common_input" ng-readonly="readonly"  
+              value="2" /> 
+             </div> 
+            </div> 
+            <div class="col-sm-3"> <label class="lbl">City/ State</label> 
+             <div> 
+              <input type="text" maxlength="250" class="form-control common_input"
+               ng-readonly="$ctrl.parent.taskDetail.addressInfo[0].cityState" value="SINGAPORE" /> 
+             </div> 
+            </div> 
+            <div class="col-sm-3"> 
+             <div>
+              <input type="hidden" class="form-control common_input" /> 
+             </div> <label class="lbl">Postal Code</label> 
+             <div> 
+              <input type="text" maxlength="250" class="form-control common_input" 
+              ng-readonly="$ctrl.parent.taskDetail.addressInfo[0].postalCode" ng-blur="$ctrl.getAddressByPostal('apptResAddPostal', 
+              'apptResAdd1', 'apptResBuilding', null)" value="149596" /> 
+             </div> 
+            </div> 
+           </div> 
+           <div class="row"> 
+            <div class="col-sm-3"> <label class="check"> <span class="lg_lbl">Select if unit no. is not applicable</span> 
+            <input type="checkbox" ng-change="$ctrl.notApplicableUnitNo('resAddUnitCheckbox')" /> 
+            <input type="hidden" name="" value="on" /> <span class="checkmark"></span> </label> 
+            </div> 
+           </div> 
+           <div class="row"> 
+            <div class="col-sm-12"> 
+             <h1 style="font-weight: bold;margin-top:15px"> Address </h1> <textarea maxlength="250" ng-readonly="$ctrl.parent.taskDetail.addressInfo[0].address" class="textarea txt col-sm-12" rows="5" cols="147">115A COMMONWEALTH DRIVE</textarea> 
+            </div> 
+           </div> 
+            
+          </div> 
+         </div> 
+         <div class="row pad_t10"> 
+          <div class="col-sm-12"> <label class="check"> <span class="lg_lbl">Mailing Address is same as residential address</span> 
+          <input type="checkbox" ng-click="$ctrl.parent.taskDetail.activitiVariablesObj['apptResMailSame'] = 
+          !$ctrl.parent.taskDetail.activitiVariablesObj['apptResMailSame']" checked="checked" /> 
+          <input type="hidden" name="" value="on" /> <span class="checkmark"></span> </label> <!-- <input class="general_label" type="text" disabled
+                                        value="Mailing Address is same as residential address"> --> 
+          </div> 
+         </div> 
+          
+        </form> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </ng-form>  
+ </body>
+</html>

@@ -1,0 +1,17 @@
+@font-face {
+  font-family: myFont;
+  src: url("../Gabriola.ttf");
+}
+.fontclass{
+  font-family: myFont;
+}
+@Page {
+  size: 8.5in 11in;
+  margin: 1in;
+}
+.myclass{
+  font-family: Helvetica, sans-serif;
+  font-size:25;
+  font-weight: normal;
+  color: blue;
+}
